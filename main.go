@@ -5,6 +5,7 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"math/rand"
 	"strconv"
@@ -28,9 +29,10 @@ func main() {
 	n = r.Intn(99) + 1
 
 	a = app.New()
-	w = a.NewWindow("Guess the number")
 
-	w.Resize(fyne.NewSize(400, 300))
+	w = a.NewWindow("Guess the number")
+	w.SetIcon(theme.InfoIcon())
+	w.Resize(fyne.NewSize(400, 90))
 	w.SetFixedSize(true)
 
 	l = widget.NewLabel(
@@ -48,8 +50,11 @@ func main() {
 	w.SetContent(
 		container.NewVBox(
 			l,
-			e,
-			b,
+			container.NewGridWithColumns(
+				2,
+				e,
+				b,
+			),
 		),
 	)
 
